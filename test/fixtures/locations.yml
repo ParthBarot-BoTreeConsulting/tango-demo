@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  location_name: MyString
+  longitude: 1.5
+  latitude: 1.5
+  event_id: 1
+
+two:
+  location_name: MyString
+  longitude: 1.5
+  latitude: 1.5
+  event_id: 1

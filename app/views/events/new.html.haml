@@ -1,0 +1,20 @@
+= render :partial => '/navigation_header'
+.container
+  %h2 Create Event
+  = form_for(@event, :url => { :action => "create" }, :html => { :method => :post }) do |f|
+    -#%form.form-horizontal
+    .control-group
+      %label.control-label{:for => "eventName"} Name
+      .controls
+        = f.text_field 'event_name',:placeholder => "Event Name"
+    .control-group
+      %label.control-label{:for => "eventLocation"} Location
+      .controls
+        = text_field_tag 'location[location_name]','', {:placeholder => "Location"}
+    .control-group
+      %label.control-label{:for => "eventLocation"} Date & Time
+      .controls
+        = f.text_field 'event_time',:placeholder => "Date and Time"
+    .control-group
+      .controls
+        %button.btn{:type => "submit"} Create

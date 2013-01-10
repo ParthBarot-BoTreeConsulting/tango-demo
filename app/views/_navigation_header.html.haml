@@ -1,0 +1,21 @@
+.navbar.navbar-inverse
+  .navbar-inner
+    .container
+      %h4.pull-left
+        %a{href:'/events/index'} Tango Location
+      - if user_signed_in?
+        %ul.nav
+          %li
+            %a{href:'/events/list_user_events'} My Events
+          %li
+            %a{href:'/events/new'} Create Event
+      .pull-right
+        - if user_signed_in?
+          = link_to "Logout",destroy_user_session_path, class:'btn btn-mini btn-danger'
+        - else
+          %a.btn.btn-info.btn-mini{href:"#{user_omniauth_authorize_path(:twitter)}"}
+            %i.icon-white.icon-thumbs-up
+            Connect to Twitter
+
+= flash[:notice] if flash[:notice].present?
+= flash[:alert] if flash[:alert].present?
