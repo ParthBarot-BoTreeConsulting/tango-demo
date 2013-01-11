@@ -1,13 +1,8 @@
 = render :partial => '/navigation_header'
 .container
-  %h2 My Events
-  %table.table.table-condensed.table-hover
-    %tr
-      %th Name
-      %th Location
-      %th Time
-    - @events.each do |event|
-      %tr
-        %td #{event.event_name}
-        %td #{event.location.location_name}
-        %td #{event.event_time}
+  .row
+    .span11
+      %h1{align:"center"} My Events
+  .row
+    .span8 &nbsp;
+  = render :partial => 'event_list', :locals => {:allow_delete => true}

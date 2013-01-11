@@ -17,5 +17,14 @@
             %i.icon-white.icon-thumbs-up
             Connect to Twitter
 
-= flash[:notice] if flash[:notice].present?
-= flash[:alert] if flash[:alert].present?
+- if flash[:notice].present?
+  .alert.alert-success.container
+    = flash[:notice]
+- if flash[:alert].present?
+  .alert.alert-error.container
+    = flash[:alert]
+.container
+  .row
+    .span8 &nbsp;
+  .row
+    .span8 &nbsp;

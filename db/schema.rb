@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130110184504) do
 
   create_table "events", :force => true do |t|
     t.string   "event_name"
-    t.datetime "event_time"
+    t.string   "event_time"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

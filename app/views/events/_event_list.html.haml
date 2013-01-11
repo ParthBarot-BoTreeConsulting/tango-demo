@@ -1,0 +1,15 @@
+%table.table.table-condensed.table-hover.table-bordered
+  %tr
+    %th Name
+    %th Location
+    %th Time
+    - if allow_delete
+      %td
+  - @events.each do |event|
+    %tr{:id => "#{event.id}"}
+      %td #{event.event_name}
+      %td #{event.location.location_name}
+      %td #{event.event_time}
+      - if allow_delete
+        %td
+          %button.btnDelete.btn.btn-danger.btn-mini{type:'button', id:"#{event.id}"} Delete

@@ -1,20 +1,34 @@
+%script{:src => "//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places", :type => "text/javascript"}
 = render :partial => '/navigation_header'
 .container
-  %h2 Create Event
-  = form_for(@event, :url => { :action => "create" }, :html => { :method => :post }) do |f|
-    -#%form.form-horizontal
-    .control-group
-      %label.control-label{:for => "eventName"} Name
-      .controls
-        = f.text_field 'event_name',:placeholder => "Event Name"
-    .control-group
-      %label.control-label{:for => "eventLocation"} Location
-      .controls
-        = text_field_tag 'location[location_name]','', {:placeholder => "Location"}
-    .control-group
-      %label.control-label{:for => "eventLocation"} Date & Time
-      .controls
-        = f.text_field 'event_time',:placeholder => "Date and Time"
-    .control-group
-      .controls
-        %button.btn{:type => "submit"} Create
+  .row
+    .span11
+      %h1{align:"center"} Create Event
+  .row
+    .span8 &nbsp;
+  .row
+    .span2 &nbsp;
+    .span6
+      = form_for(@event, :url => { :action => "create" }, :html => { :method => :post, class:'form-horizontal' }) do |f|
+        -#%form.form-horizontal
+        .control-group
+          %label.control-label{:for => "eventName"} Name
+          .controls
+            = f.text_field 'event_name',:placeholder => "Event Name", required:""
+        .control-group
+          %label.control-label{:for => "eventLocation"} Location
+          .controls
+            = text_field_tag 'location[location_name]','', {:placeholder => "Location", required:""}
+            = hidden_field_tag 'location[longitude]'
+            = hidden_field_tag 'location[latitude]'
+        .control-group
+          %label.control-label{:for => "eventLocation"} Date & Time
+          .controls
+            = f.text_field 'event_time',:placeholder => "Date and Time", required:""
+        .control-group
+          .controls
+            %button.btn.btn-large.btn-success#submitCreateEvent{:type => "submit"} Create
+
+:javascript
+  google.maps.event.addDomListener(window, 'load',
+    initGoogleLocationSearchFields('location_location_name','location_longitude', 'location_latitude'));

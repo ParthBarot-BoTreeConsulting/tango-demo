@@ -5,7 +5,8 @@ class Event < ActiveRecord::Base
 
   has_one :location
 
-  validates_uniqueness_of :event_name,
-                          :case_sensitive => false,
-                          :allow_blank => false
+  validates_presence_of :event_name, :message => 'Event name can not be blank.'
+
+  validates_uniqueness_of :event_name, :case_sensitive => false, :allow_blank => false,
+                          :message => 'Name not available, please choose another name for event.'
 end

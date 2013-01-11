@@ -1,7 +1,39 @@
+%script{:src => "//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places", :type => "text/javascript"}
 = render :partial => '/navigation_header'
 .container
-  %h2 TangoLocation
-  %h4 Find tango events wherever you are!
-  .input-append
-    %input.input-xlarge{type: 'text', id: 'searchTangoKeyword', placeholder:'Enter location or keyword'}
-    %button.btn{type:'submit'} Search
+  .row
+    .span11
+      %h1{align:"center"} TangoLocation
+  .row
+    .span11
+      %h4{align:"center"} Find tango events wherever you are!
+  .row
+    .span11{align:"center"}
+      .input-append
+        %input.input-xlarge{type: 'text', name: 'search_keyword',
+        id: 'searchTangoKeyword',style: 'height: 35px',
+        placeholder:'Enter location or keyword'}
+        %button#btnSearch.btn.btn-success.btn-large{type:'button'} Search
+    .span11 &nbsp;
+    .span11{align:"center"}
+      %h5 Find events near you!
+    .span11{align:"center"}
+      .input-append
+        = check_box_tag "is_distance_range",'false',false, style:'margin: 8px;'
+        %input.input-large{type: 'text', name: 'search_location',id: 'search_location', placeholder:'Enter location', disabled:''}
+        = hidden_field_tag "search_longitude"
+        = hidden_field_tag "search_latitude"
+        %input.input-mini{type: 'text',value:100 , name: 'search_range_km',id: 'search_range_km',
+        placeholder:'Range', disabled:'',style:'border-right: 0px none; width: 30px;'}
+        %span.add-on miles
+        %button#btnGoWithDistance.btn.btn-success{type:'button'} Go
+    .span11 &nbsp;
+    .span11{align:"center"}
+      #range_slider{style:'width: 375px;'}
+    .span11 &nbsp;
+    .span11{align:'center'}
+      #searchResults &nbsp;
+
+:javascript
+  google.maps.event.addDomListener(window, 'load',
+    initGoogleLocationSearchFields('search_location','search_longitude', 'search_latitude'));

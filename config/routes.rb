@@ -6,7 +6,8 @@ TangoDemo::Application.routes.draw do
 
   get "events/new"
 
-  get "events/search"
+  match "/events/search" => "events#search", :via => :post
+  match "/events/remove" => "events#delete", :via => :post
 
   get "events/list_user_events"
 
