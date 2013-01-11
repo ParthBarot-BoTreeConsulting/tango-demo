@@ -13,6 +13,9 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'rails_config','0.2.5'
 gem 'libv8', '~> 3.11.8'
+#gem 'faker'
+gem 'ffaker'
+#gem 'factory_girl_rails'
 
 group :development do
   gem "haml-rails", ">= 0.3.4"

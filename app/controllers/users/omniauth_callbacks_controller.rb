@@ -45,7 +45,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       user = User.new
       user.register_omniauth(auth)
-
+      user.email = ::Faker::Internet.email
       if user.save
         flash[:notice] = "Account created and you have been signed in!"
         sign_in_and_redirect(:user, user)

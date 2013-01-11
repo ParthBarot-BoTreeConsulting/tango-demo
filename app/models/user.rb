@@ -17,14 +17,6 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent=>:delete_all
   has_many :events, :dependent=>:delete_all
 
-  def email_required?
-    super && false
-  end
-
-  def password_required?
-    super && false
-  end
-
   def register_omniauth(auth)
     screen_name = get_screen_name(auth)
     self.screen_name = screen_name
@@ -32,6 +24,10 @@ class User < ActiveRecord::Base
                           :token=>auth['credentials']['token'],
                           :secret=>auth['credentials']['secret'],
                           :screen_name => screen_name)
+  end
+
+  def password_required?
+    super && false
   end
 
   def get_screen_name(auth)
